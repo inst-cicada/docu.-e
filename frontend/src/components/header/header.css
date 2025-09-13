@@ -9,15 +9,20 @@
   margin: 0%;
 }
 
-.docume_header_bar_content_1 {
-  font-size: 24px;
+.docume_header_bar_content_1, .docume_header_bar_content_2 {
+  font-size: 28px;
   font-weight: bold;
 }
 
-.docume_header_bar_content_1:first-child {
+.docume_header_bar_content_1 {
   color: #007bff;  
 }
 
-.docume_header_bar_content_1:last-child {
+.docume_header_bar_content_2 {
   color: #ffffff; 
+}
+
+.docume_header_bar_logo{
+  height: 40px;
+  margin-right: 10px;
 }

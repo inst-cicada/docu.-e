@@ -1,4 +1,7 @@
-body, html {
+body,
+html {
   margin: 0;
   padding: 0;
+  background: #007BFF;
+  background: linear-gradient(90deg, rgba(0, 123, 255, 1) 0%, rgba(156, 106, 222, 1) 44%, rgba(207, 194, 78, 1) 100%);
 }
