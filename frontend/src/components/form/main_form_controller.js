@@ -1,13 +1,6 @@
 import { extractCurl } from "../document_generator/curl_extracter";
+import { labelOptions } from "./main_form";
 
-
-
-const labelOptions = [
-    { label: "API Description", name: "apiDescription", aiGenerate: true },
-    { label: "Additional notes", name: "additionalNotes", aiGenerate: false },
-    { label: "Error Response", name: "errorResponse", aiGenerate: false },
-    { label: "Usage", name: "usage", aiGenerate: false }
-];
 export const handleChange = (e, idx, setFields) => {
     const { value } = e.target;
     setFields((prev) =>
@@ -16,20 +9,25 @@ export const handleChange = (e, idx, setFields) => {
         )
     );
 };
-export const handleLabelInputSubmit = (e, newLabel, setFields, setNewLabel, setShowLabelInput) => {
+export const handleLabelInputSubmit = (e, newLabel, currentFields, setFields, setNewLabel, setShowLabelInput) => {
     e.preventDefault();
     if (newLabel.trim() === "") return;
     const selectedOption = labelOptions.find(opt => opt.name === newLabel);
     if (!selectedOption) return;
-    setFields((prev) => [
-        ...prev,
-        {
-            label: selectedOption.label,
-            name: selectedOption.name,
-            value: "",
-            aiGenerate: selectedOption.aiGenerate
-        }
-    ]);
+    const exists = currentFields.some(opt => opt.name === newLabel);
+    if (exists) {
+        alert(`ERROR: The field "${selectedOption.label}" already has been added.`);
+    } else {
+        setFields((prev) => [
+            ...prev,
+            {
+                label: selectedOption.label,
+                name: selectedOption.name,
+                value: "",
+                aiGenerate: selectedOption.aiGenerate
+            }]
+        );
+    }
     setNewLabel("");
     setShowLabelInput(false);
 };

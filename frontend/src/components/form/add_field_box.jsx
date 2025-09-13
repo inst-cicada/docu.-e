@@ -1,11 +1,11 @@
 import { useRef, useEffect } from "react";
-
+import { labelOptions } from "./main_form";
 function AddFieldBox({
     showLabelInput,
     newLabel,
     setNewLabel,
     setShowLabelInput,
-    labelOptions,
+    currentFields,
     setFields,
     main_controller
 }) {
@@ -28,7 +28,7 @@ function AddFieldBox({
     return (
         <div
             ref={dropDownRef}
-            className="absolute bottom-20 left-1/2 -translate-x-1/2 bg-white/70 p-4 rounded-lg shadow-md"
+            className="absolute bottom-20 left-1/2 -translate-x-1/2 bg-white/70 p-4 rounded-lg shadow-md hover:shadow-lg hover:shadow-black/30 transition duration-300"
         >
             {showLabelInput ? (
                 <>
@@ -46,12 +46,14 @@ function AddFieldBox({
                             </option>
                         ))}
                     </select>
+                    <div className="h-5"></div>
                     <button
                         type="button"
                         onClick={(e) =>
                             main_controller.handleLabelInputSubmit(
                                 e,
                                 newLabel,
+                                currentFields,
                                 setFields,
                                 setNewLabel,
                                 setShowLabelInput
@@ -62,15 +64,16 @@ function AddFieldBox({
                     </button>
                 </>
             ) : (
-                <button
-                    type="button"
-                    onClick={(e) =>
-                        main_controller.handleAddFieldClick(e, setShowLabelInput)
-                    }
-                    className="px-3 py-1 bg-gray-700 text-white rounded-md"
-                >
-                    Add
-                </button>
+                <div className="flex flex-col items-center">
+                    <button
+                        type="button"
+                        onClick={(e) => main_controller.handleAddFieldClick(e, setShowLabelInput)}
+                        className="w-10 h-10 flex items-center justify-center bg-gray-700 text-white rounded-full text-lg hover:bg-gray-800"
+                    >
+                        +
+                    </button>
+                    <div className="text-sm text-gray-600 mt-1 text-center">Add Field</div>
+                </div>
             )}
         </div>
     );

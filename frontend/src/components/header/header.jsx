@@ -7,7 +7,7 @@ function AppHeader() {
     <>
       <div className='docume_header_bar'>
         <img src={logo} alt="docu.me logo" className="docume_header_bar_logo "></img>
-        <div className='docume_header_bar_content_1'>docu.</div>
+        <div className='docume_header_bar_content_1'>Docu.</div>
         <div className='docume_header_bar_content_2'>me</div>
       </div>
     </>

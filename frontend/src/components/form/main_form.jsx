@@ -2,7 +2,13 @@ import { useState } from "react";
 import InputBox from "./input_box";
 import AddFieldBox from "./add_field_box";
 import * as main_controller from "./main_form_controller";
-
+export const labelOptions = [
+        { label: "API Description", name: "apiDescription", aiGenerate: true, inpType: "text" },
+        { label: "Additional notes", name: "additionalNotes", aiGenerate: false, inpType: "text" },
+        { label: "Error Response", name: "errorResponse", aiGenerate: false, inpType: "text" },
+        { label: "Usage", name: "usage", aiGenerate: false, inpType: "text" },
+        { label: "Place Holder Logo", name: "placeHolderLogo", aiGenerate: false, inpType: "image" },
+    ];
 function MainForm() {
     const [fields, setFields] = useState([
         { label: "API's Name", name: "apiName", value: "", aiGenerate: false, inpType: "text" },
@@ -13,14 +19,6 @@ function MainForm() {
     const [newLabel, setNewLabel] = useState("");
 
     const [currentStep, setCurrentStep] = useState(0);
-
-    const labelOptions = [
-        { label: "API Description", name: "apiDescription", aiGenerate: true, inpType: "text" },
-        { label: "Additional notes", name: "additionalNotes", aiGenerate: false, inpType: "text" },
-        { label: "Error Response", name: "errorResponse", aiGenerate: false, inpType: "text" },
-        { label: "Usage", name: "usage", aiGenerate: false, inpType: "text" },
-        { label: "Place Holder Logo", name: "placeHolderLogo", aiGenerate: false, inpType: "image" },
-    ];
 
     const handleNext = () => {
         if (currentStep < fields.length - 1) {
@@ -36,8 +34,8 @@ function MainForm() {
 
     return (
         <>
-            <div className="h-[100px]"></div>
-            <div className="w-full flex items-center justify-center">
+            <div className="h-[20px]"></div>
+            <div className="w-full flex items-center justify-center p-10px">
                 <form
                     className="main_form relative w-[400px] h-[500px] overflow-hidden"
                     onSubmit={(e) => main_controller.handleSubmit(e, fields)}>
@@ -98,7 +96,7 @@ function MainForm() {
                             newLabel={newLabel}
                             setNewLabel={setNewLabel}
                             setShowLabelInput={setShowLabelInput}
-                            labelOptions={labelOptions}
+                            currentFields={fields}
                             setFields={setFields}
                             main_controller={main_controller}
                         />
