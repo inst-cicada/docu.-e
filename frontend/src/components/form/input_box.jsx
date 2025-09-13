@@ -15,7 +15,7 @@ function InputBox({ label, name, value, onChange, aiGenerate = false }) {
                     focus:outline-green-400 focus:ring-2 focus:ring-green-500
                     tracking-tight leading-relaxed
                 "
-                placeholder="> Type your command here..."
+                placeholder={`> Type your ${label} here...`}
             />
       
             {
