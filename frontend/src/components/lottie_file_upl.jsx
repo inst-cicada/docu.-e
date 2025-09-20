@@ -6,22 +6,24 @@ const FileUplAnim = ({ isPicked, children }) => {
     const dotLottieRefCallback = (dotLottie) => {
         setDotLottie(dotLottie);
     };
-    useEffect(handleLottieAnimation, [dotLottie]);
+    useEffect(()=>{
+         if (!dotLottie) return;
 
-    function handleLottieAnimation() {
-        if (dotLottie) {
-            dotLottie.addEventListener('frame', frameChangeEffect);
-        }
-    }
+        dotLottie.addEventListener("frame", frameChangeEffect);
+        return () => {
+            dotLottie.removeEventListener("frame", frameChangeEffect);
+        };
+    }, [dotLottie, isPicked]);
 
     function frameChangeEffect({ currentFrame }) {
         if (!isPicked && currentFrame >= 30) {
-                seek(1);
-                dotLottie.setSpeed(.3);
-            }else if(isPicked && currentFrame === 111){
-                //111 is where the green tick is visible
-                dotLottie.pause();
-            }
+            seek(1);
+            dotLottie.setSpeed(.3);
+        } else if (isPicked && currentFrame < 105) {
+             dotLottie.setSpeed(2);
+        } else if (isPicked) {
+             dotLottie.pause();
+        }
     }
     function seek(frameIndex) {
         if (dotLottie) {

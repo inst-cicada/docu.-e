@@ -1,7 +1,7 @@
 import FileInputField from "./file_input_field";
 
 function InputBox({ label, name, value, onChange, aiGenerate = false, inputType }) {
-    console.log("Rendering InputBox with inputType:", inputType);
+    // console.log("Rendering InputBox with inputType:", inputType);
     let inputField;
     switch (inputType) {
         case 'image':

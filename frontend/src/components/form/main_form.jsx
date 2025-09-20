@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import InputBox from "./input_box";
 import AddFieldBox from "./add_field_box";
 import * as main_controller from "./main_form_controller";
@@ -10,6 +10,7 @@ export const labelOptions = [
         { label: "Place Holder Logo", name: "placeHolderLogo", aiGenerate: false, inpType: "image" },
     ];
 function MainForm() {
+    const formSubmitRef = useRef(null);
     const [fields, setFields] = useState([
         { label: "API's Name", name: "apiName", value: "", aiGenerate: false, inpType: "text" },
         { label: "CURL Command", name: "curl", value: "", aiGenerate: false, inpType: "text" },
@@ -38,7 +39,7 @@ function MainForm() {
             <div className="w-full flex justify-center items-center p-10px ">
                 <form
                     className="main_form relative w-[450px] h-[500px] overflow-hidden flex justify-center items-center"
-                    onSubmit={(e) => main_controller.handleSubmit(e, fields)}>
+                   ref={formSubmitRef} onSubmit={(e) => main_controller.handleSubmit(e, fields)}>
                     <div className="relative w-full max-w-sm h-full">
                         {fields.map((field, idx) => (
                             <div
@@ -81,8 +82,9 @@ function MainForm() {
                             </button>
                         ) : (
                             <button
-                                type="submit"
+                                type="button"
                                 className="ml-auto px-4 py-2 rounded-lg bg-green-500 text-white font-bold shadow-md"
+                                onClick={() => formSubmitRef.current.requestSubmit()}
                             >
                                 Submit
                             </button>

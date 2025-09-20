@@ -1,6 +1,7 @@
 import parseCurl from "parse-curl";
 
 export function extractCurl(curl) {
+    console.log("Hey");
     try {
         let parsed = parseCurl(curl);
         if ("body" in parsed) {
@@ -9,7 +10,7 @@ export function extractCurl(curl) {
         }
         return parsed;
     } catch (err) {
-        console.error("Invalid cURL:", err);
+        // console.error("Invalid cURL:", err);
         return null;
     }
 }

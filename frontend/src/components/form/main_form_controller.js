@@ -43,12 +43,13 @@ export const handleLabelInputChange = (e, setNewLabel) => {
 
 export const handleSubmit = (e, fields) => {
     e.preventDefault();
-    const formData = fields.reduce((acc, field) => {
-        acc[field.name] = field.value;
-        return acc;
-    }, {});
-    console.log("Final Data:", formData);
-    console.log("curl data is :: ", formData.curl);
-    let curlData = extractCurl(formData.curl);
-    console.log("Extracted curl data:", curlData);
+    console.log("H");
+    // const formData = fields.reduce((acc, field) => {
+    //     acc[field.name] = field.value;
+    //     return acc;
+    // }, {});
+    // console.log("Final Data:", formData);
+    // console.log("curl data is :: ", formData.curl);
+    // let curlData = extractCurl(formData.curl);
+    // console.log("Extracted curl data:", curlData);
 };
