@@ -35,9 +35,9 @@ function MainForm() {
     return (
         <>
             <div className="h-[20px]"></div>
-            <div className="w-full flex items-center justify-center p-10px">
+            <div className="w-full flex justify-center items-center p-10px ">
                 <form
-                    className="main_form relative w-[400px] h-[500px] overflow-hidden"
+                    className="main_form relative w-[450px] h-[500px] overflow-hidden flex justify-center items-center"
                     onSubmit={(e) => main_controller.handleSubmit(e, fields)}>
                     <div className="relative w-full max-w-sm h-full">
                         {fields.map((field, idx) => (
@@ -46,9 +46,7 @@ function MainForm() {
                                 className={`absolute top-0 left-0 w-full transition-all duration-700
                         ${idx === currentStep
                                         ? "opacity-100 translate-x-0 z-10"
-                                        : idx < currentStep
-                                            ? "opacity-0 -translate-x-full z-0"
-                                            : "opacity-0 translate-x-full z-0"
+                                        : formFieldElementIdxCSS(idx)
                                     }`}
                             >
                                 <InputBox
@@ -57,6 +55,7 @@ function MainForm() {
                                     value={field.value}
                                     aiGenerate={field.aiGenerate}
                                     onChange={(e) => main_controller.handleChange(e, idx, setFields)}
+                                    inputType={field.inpType}
                                 />
                             </div>
                         ))}
@@ -105,6 +104,12 @@ function MainForm() {
             </div>
         </>
     );
+
+    function formFieldElementIdxCSS(idx) {
+        return idx < currentStep
+            ? "opacity-0 -translate-x-full z-0"
+            : "opacity-0 translate-x-full z-0";
+    }
 }
 
 export default MainForm;

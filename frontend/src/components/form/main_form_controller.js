@@ -24,7 +24,8 @@ export const handleLabelInputSubmit = (e, newLabel, currentFields, setFields, se
                 label: selectedOption.label,
                 name: selectedOption.name,
                 value: "",
-                aiGenerate: selectedOption.aiGenerate
+                aiGenerate: selectedOption.aiGenerate,
+                inpType: selectedOption.inpType
             }]
         );
     }
