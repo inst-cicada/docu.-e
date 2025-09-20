@@ -7,7 +7,7 @@ export const labelOptions = [
         { label: "Additional notes", name: "additionalNotes", aiGenerate: false, inpType: "text" },
         { label: "Error Response", name: "errorResponse", aiGenerate: false, inpType: "text" },
         { label: "Usage", name: "usage", aiGenerate: false, inpType: "text" },
-        { label: "Place Holder Logo", name: "placeHolderLogo", aiGenerate: false, inpType: "image" },
+        { label: "Place Holder Logo", name: "placeHolderLogoBase64", aiGenerate: false, inpType: "image" },
     ];
 function MainForm() {
     const formSubmitRef = useRef(null);
