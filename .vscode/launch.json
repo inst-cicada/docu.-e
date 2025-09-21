@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-DocumeApplication<docume>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.cicada.docume.DocumeApplication",
+            "projectName": "docume",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

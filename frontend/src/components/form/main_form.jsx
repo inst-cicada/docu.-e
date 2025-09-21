@@ -21,6 +21,8 @@ function MainForm() {
 
     const [currentStep, setCurrentStep] = useState(0);
 
+    const [documentData, setDocumentData] = useState(null);
+
     const handleNext = () => {
         if (currentStep < fields.length - 1) {
             setCurrentStep((prev) => prev + 1);
@@ -39,7 +41,7 @@ function MainForm() {
             <div className="w-full flex justify-center items-center p-10px ">
                 <form
                     className="main_form relative w-[450px] h-[500px] overflow-hidden flex justify-center items-center"
-                   ref={formSubmitRef} onSubmit={(e) => main_controller.handleSubmit(e, fields)}>
+                   ref={formSubmitRef} onSubmit={(e) => main_controller.handleSubmit(e, fields,setDocumentData,documentData)}>
                     <div className="relative w-full max-w-sm h-full">
                         {fields.map((field, idx) => (
                             <div

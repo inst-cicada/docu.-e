@@ -1,5 +1,6 @@
-import { extractCurl } from "../document_generator/curl_extracter";
+import { axiosConf, getMyIp } from "../../configs/api_conf";
 import { labelOptions } from "./main_form";
+import axios from "axios";
 
 export const handleChange = (e, idx, setFields) => {
     const { value } = e.target;
@@ -41,12 +42,26 @@ export const handleLabelInputChange = (e, setNewLabel) => {
     setNewLabel(e.target.value);
 };
 
-export const handleSubmit = (e, fields) => {
+export const handleSubmit = (e, fields, setDocumentData) => {
     e.preventDefault();
+    getMyIp();
     console.log("H");
     const formData = fields.reduce((acc, field) => {
         acc[field.name] = field.value;
         return acc;
     }, {});
     console.log("Final Data:", formData);
+    setDocumentData(formData);
 };
+
+export const callDocumentGenerationAPI = (documentData, setDocumentResponse) =>{
+    axiosConf.post("/", documentData)
+    .then((response) => {
+        console.log("API Response:", response.data);
+        setDocumentResponse(response.data);
+    })
+    .catch((error) => {
+        console.error("API Error:", error);
+        setDocumentResponse({ error: "Failed to generate document." });
+    });
+}
