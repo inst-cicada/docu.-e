@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "RestServices",
+            "request": "launch",
+            "mainClass": "com.cicada.docume.services.RestServices",
+            "projectName": "docume"
+        },
+        {
+            "type": "java",
             "name": "Spring Boot-DocumeApplication<docume>",
             "request": "launch",
             "cwd": "${workspaceFolder}",

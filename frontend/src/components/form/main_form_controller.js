@@ -44,15 +44,17 @@ export const handleLabelInputChange = (e, setNewLabel) => {
 
 export const handleSubmit = (e, fields, setDocumentData) => {
     e.preventDefault();
-    getMyIp();
-    console.log("H");
-    const formData = fields.reduce((acc, field) => {
-        acc[field.name] = field.value;
-        return acc;
-    }, {});
-    console.log("Final Data:", formData);
-    setDocumentData(formData);
+    getMyIp().then((ip) => {
+        const formData = fields.reduce((acc, field) => {
+            acc[field.name] = field.value;
+            return acc;
+        }, {});
+        console.log("Log:: ",ip);
+        console.log("Final Data:", formData);
+        setDocumentData(formData);
+    });
 };
+
 
 export const callDocumentGenerationAPI = (documentData, setDocumentResponse) =>{
     axiosConf.post("/", documentData)

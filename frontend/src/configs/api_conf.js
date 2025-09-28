@@ -25,8 +25,15 @@ function generateRef() {
     return dateStr + randomNum.toString();
 }
 
-export function getMyIp() {
-    let ipdata = fetch(`https://api.ipify.org?format=json`)
-        .then(res => res).catch(err => { console.log(err) }).finally(() => { console.log("IP API call finished"); });
-    console.log(ipdata);
+export async function getMyIp() {
+    try {
+        const res = await fetch("http://localhost:8081/document-gen/ping");
+        const data = await res.json();
+        return data;
+    } catch (err) {
+        console.error("ERROR::", err);
+        return "unknown";
+    } finally {
+        console.log("IP API call finished");
+    }
 }
